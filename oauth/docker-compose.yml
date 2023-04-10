@@ -18,4 +18,15 @@ services:
     volumes:
       - g5-keycloak-data:/opt/jboss/keycloak/standalone/data
     networks:
-      - g5 
+      - g5
+  oauth:
+    container_name: oauth
+    build:
+      dockerfile: Dockerfile
+    image: oauth:latest
+    ports:
+      - 8080:8080
+    networks:
+      - g5
+    depends_on:
+      - keycloak
