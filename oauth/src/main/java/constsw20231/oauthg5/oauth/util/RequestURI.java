@@ -1,4 +1,4 @@
-package constsw20231.oauthg5.oauth;
+package constsw20231.oauthg5.oauth.util;
 
 import lombok.Getter;
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class DefaultBodyRequest {
+public class LoginBodyRequest {
 
   private String grant_type;
   private String client_id;
