@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class UserDTO {
+public class UserRequestDTO {
     private String username;
     private Boolean isEnabled;
     private String firstName;

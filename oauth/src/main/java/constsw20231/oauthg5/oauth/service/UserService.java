@@ -2,18 +2,19 @@ package constsw20231.oauthg5.oauth.service;
 
 import java.util.Collection;
 
-import constsw20231.oauthg5.oauth.dto.request.UserDTO;
+import constsw20231.oauthg5.oauth.dto.request.UserRequestDTO;
+import constsw20231.oauthg5.oauth.dto.response.UserResponseDTO;
 
 public class UserService implements IUserService {
 
     @Override
-    public UserDTO findById(String acessToken, String id) throws Exception {
+    public UserResponseDTO findById(String acessToken, String id) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    public Collection<UserDTO> findAllUsers(String authorization, Boolean isEnabled) throws Exception {
+    public Collection<UserResponseDTO> findAllUsers(String authorization, Boolean isEnabled) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAllUsers'");
     }
@@ -25,13 +26,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public String createUser(String authorization, UserDTO newUser) throws Exception {
+    public String createUser(String authorization, UserRequestDTO newUser) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createUser'");
     }
 
     @Override
-    public void updateUser(String authorization, String id, UserDTO user) throws Exception {
+    public void updateUser(String authorization, String id, UserRequestDTO user) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
     }

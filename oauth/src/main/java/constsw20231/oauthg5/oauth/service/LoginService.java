@@ -8,6 +8,8 @@ import constsw20231.oauthg5.oauth.client.ILoginClient;
 import constsw20231.oauthg5.oauth.dto.request.LoginBodyRequest;
 import constsw20231.oauthg5.oauth.dto.request.DefaultHeader;
 import constsw20231.oauthg5.oauth.dto.response.TokenResponse;
+import constsw20231.oauthg5.oauth.dto.response.UserInfoResponseDTO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,12 @@ public class LoginService implements ILoginService {
     HttpResponse httpResponse = client.obtainAccessTokenForUser(header, loginBodyRequest);
 
     return new Gson().fromJson((String) httpResponse.getBody(), TokenResponse.class);
+  }
+
+  @Override
+  public UserInfoResponseDTO getUserInfo() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getUserInfo'");
   }
 
 }
