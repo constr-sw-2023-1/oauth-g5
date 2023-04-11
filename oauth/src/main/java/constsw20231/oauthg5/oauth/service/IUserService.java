@@ -17,6 +17,6 @@ public interface IUserService {
 
     void updateUser(String authorization, String id, UserRequestDTO user) throws Exception;
 
-    void updateUserPassword(String id, String password, String authorization) throws Exception;
+    void updateUserPassword(String authorization, String id, String password) throws Exception;
 
 }
