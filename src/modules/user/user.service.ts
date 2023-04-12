@@ -150,7 +150,7 @@ export class UserService {
       );
   }
 
-  updateUser(accessToken: string, updatedUser: UserUpdateDTO, userId: string) {
+  updateUser(accessToken: string, updatedUser: UserUpdateDTO, userId: string): any {
     const getUserUri = `${this.keyCloakBaseUsersUri}/${userId}`;
     const config = {
       headers: {
@@ -168,7 +168,6 @@ export class UserService {
           lastName,
           enabled,
         );
-        return { updatedUser }; // wrap the data in an object
       }),
       catchError((e) => {
         if (e.response && e.response.status === HttpStatus.NOT_FOUND) {

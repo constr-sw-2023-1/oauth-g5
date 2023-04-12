@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get()
   @Unprotected()
@@ -59,7 +59,7 @@ export class UserController {
     @Body() updatedUser: UserUpdateDTO,
   ): Promise<any> {
     const accessToken = authHeader.split(' ')[1];
-    this.userService.updateUser(accessToken, updatedUser, userId);
+    return await this.userService.updateUser(accessToken, updatedUser, userId);
   }
 
   @Patch(':id')
