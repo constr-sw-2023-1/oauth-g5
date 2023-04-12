@@ -38,25 +38,39 @@ export class AuthService {
       headers: headers,
     };
     return this._http.post(this.keyCloakTokenUri, params, config).pipe(
-      map(
-        (res) =>
-          new KeyCloakTokenResponseDTO(
+      map((res) => {
+        if (res.data) {
+          return new KeyCloakTokenResponseDTO(
             res.data.access_token,
             res.data.refresh_token,
             res.data.expires_in,
             res.data.refresh_expires_in,
-          ),
-      ),
+          );
+        } else {
+          throw new HttpException(
+            'Invalid response',
+            HttpStatus.INTERNAL_SERVER_ERROR,
+          );
+        }
+      }),
       catchError((e) => {
-        if (e.response.status === HttpStatus.BAD_REQUEST) {
+        if (e.response && e.response.status === HttpStatus.BAD_REQUEST) {
           throw new HttpException(
             'Invalid credentials',
             HttpStatus.UNAUTHORIZED,
           );
-        } else if (e.response.status === HttpStatus.UNAUTHORIZED) {
+        } else if (
+          e.response &&
+          e.response.status === HttpStatus.UNAUTHORIZED
+        ) {
           throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
-        } else {
+        } else if (e.response && e.response.data) {
           throw new HttpException(e.response.data, e.response.status);
+        } else {
+          throw new HttpException(
+            'Unknown error',
+            HttpStatus.INTERNAL_SERVER_ERROR,
+          );
         }
       }),
     );

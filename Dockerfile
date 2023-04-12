@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --quiet --no-optional --no-fund --loglevel=error
 
 COPY . .
 
