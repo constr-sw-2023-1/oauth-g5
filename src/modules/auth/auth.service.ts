@@ -80,8 +80,8 @@ export class AuthService {
     const params = {
       grant_type: 'refresh_token',
       refresh_token: refresh_token,
-      client_id: 'my-client-id',
-      client_secret: 'my-client-secret',
+      client_id: this.keyCloakClientId,
+      client_secret: this.keyCloakClientSecret,
     };
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
