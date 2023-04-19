@@ -1,8 +1,16 @@
-/* eslint-disable prettier/prettier */
+import { ApiProperty } from '@nestjs/swagger';
+
 export class KeyCloakTokenResponseDTO {
+  @ApiProperty()
   access_token: string;
+
+  @ApiProperty()
   refresh_token: string;
+
+  @ApiProperty()
   expires_in: string;
+
+  @ApiProperty()
   refresh_expires_in: string;
 
   constructor(

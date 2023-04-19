@@ -1,10 +1,22 @@
-/* eslint-disable prettier/prettier */
+import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateUserResponseDTO {
+  @ApiProperty()
   id: string;
+
+  @ApiProperty()
   username: string;
+
+  @ApiProperty()
   firstName: string;
+
+  @ApiProperty()
   lastName: string;
+
+  @ApiProperty()
   email: string;
+
+  @ApiProperty()
   enabled: boolean;
 
   constructor(
