@@ -2,23 +2,27 @@ import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Unprotected } from 'nest-keycloak-connect';
 import { KeyCloakTokenResponseDTO } from './dto/keyCloakTokenResponseDTO.model';
-import { ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth')
 @Controller()
 export class AuthController {
-  constructor(private authService: AuthService) {}
-  @ApiParam({
-    name: 'username',
-    type: 'string',
-    required: true,
-    example: 'usuario',
-  })
-  @ApiParam({
-    name: 'password',
-    type: 'string',
-    required: true,
-    example: 'senha',
+  constructor(private authService: AuthService) { }
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        username: {
+          type: 'string',
+          example: 'usuario',
+        },
+        password: {
+          type: 'string',
+          example: 'senha',
+        },
+      },
+      required: ['username', 'password'],
+    },
   })
   @Post('login')
   @Unprotected()
