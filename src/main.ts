@@ -10,8 +10,14 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('oauth')
     .build();
+
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
+
+  SwaggerModule.setup('docs', app, document, {
+    swaggerOptions: {
+      baseUrl: 'http://oauth:3000',
+    },
+  });
 
   await app.listen(3000, '0.0.0.0');
 }
