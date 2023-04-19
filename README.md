@@ -45,6 +45,19 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Running with Docker
+```bash
+# create volume for KeyCloak
+# development
+$ docker compose up
+```
+
+## Swagger
+```bash
+$ docker compose up
+# localhost:3000/docs
+```
+
 ## Test
 
 ```bash
