@@ -56,7 +56,7 @@ $ docker compose up
 ```bash
 # development
 $ docker compose up
-#
+
 # access
 # localhost:3000/docs
 ```
