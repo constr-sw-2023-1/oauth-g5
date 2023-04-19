@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
+  constructor(private readonly userService: UserService) {}
 
   @Get()
   @Unprotected()
@@ -32,6 +32,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @Unprotected()
   @HttpCode(HttpStatus.OK)
   async getUserById(
     @Param('id') userId: string,
@@ -42,6 +43,7 @@ export class UserController {
   }
 
   @Post()
+  @Unprotected()
   @HttpCode(HttpStatus.CREATED)
   async createUser(
     @Body() createUserDTO: CreateUserDTO,
@@ -52,6 +54,7 @@ export class UserController {
   }
 
   @Put(':id')
+  @Unprotected()
   @HttpCode(HttpStatus.OK)
   async updateUser(
     @Headers('Authorization') authHeader: string,
@@ -63,6 +66,7 @@ export class UserController {
   }
 
   @Patch(':id')
+  @Unprotected()
   @HttpCode(HttpStatus.OK)
   async patchUserPassword(
     @Headers('Authorization') authHeader: string,
@@ -74,6 +78,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @Unprotected()
   @HttpCode(HttpStatus.NO_CONTENT)
   deleteUser(
     @Headers('Authorization') authHeader: string,
