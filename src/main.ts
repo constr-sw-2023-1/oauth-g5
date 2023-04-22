@@ -8,7 +8,12 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Construção de Software')
     .setVersion('1.0')
-    .addTag('oauth')
+    .addTag('auth')
+    .addTag('users')
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      'Authorization',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

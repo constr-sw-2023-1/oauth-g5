@@ -18,26 +18,14 @@ import { CreateUserDTO } from './dto/CreateUserDTO.model';
 import { UserUpdateDTO } from './dto/UserUpdateDTO.model';
 import { UpdatePasswordDTO } from './dto/UpdatePasswordDTO.model';
 import { Observable } from 'rxjs';
-import {
-  ApiBearerAuth,
-  ApiBody,
-  ApiHeader,
-  ApiParam,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('User')
+@ApiBearerAuth('Authorization')
+@ApiTags('users')
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @ApiBearerAuth()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer token',
-    required: true,
-    example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiS...',
-  })
   @Get()
   @Unprotected()
   @HttpCode(HttpStatus.OK)
@@ -46,13 +34,6 @@ export class UserController {
     return this.userService.getAllUsers(accessToken);
   }
 
-  @ApiBearerAuth()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer token',
-    required: true,
-    example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiS...',
-  })
   @ApiParam({
     name: 'id',
     description: 'User ID',
@@ -71,13 +52,6 @@ export class UserController {
     return this.userService.getUserById(accessToken, userId);
   }
 
-  @ApiBearerAuth()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer token',
-    required: true,
-    example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiS...',
-  })
   @ApiBody({ type: CreateUserDTO })
   @Post()
   @Unprotected()
@@ -90,13 +64,6 @@ export class UserController {
     return await this.userService.createUser(accessToken, createUserDTO);
   }
 
-  @ApiBearerAuth()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer token',
-    required: true,
-    example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiS...',
-  })
   @ApiParam({
     name: 'id',
     description: 'User ID',
@@ -117,13 +84,6 @@ export class UserController {
     return await this.userService.updateUser(accessToken, updatedUser, userId);
   }
 
-  @ApiBearerAuth()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer token',
-    required: true,
-    example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiS...',
-  })
   @ApiParam({
     name: 'id',
     description: 'User ID',
@@ -144,13 +104,6 @@ export class UserController {
     await this.userService.patchUserPassword(userId, newPassword, accessToken);
   }
 
-  @ApiBearerAuth()
-  @ApiHeader({
-    name: 'Authorization',
-    description: 'Bearer token',
-    required: true,
-    example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiS...',
-  })
   @ApiParam({
     name: 'id',
     description: 'User ID',
