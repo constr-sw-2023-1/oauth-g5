@@ -2,12 +2,13 @@ import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Unprotected } from 'nest-keycloak-connect';
 import { KeyCloakTokenResponseDTO } from './dto/keyCloakTokenResponseDTO.model';
-import { ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import { KeyCloakTokenRequestDTO } from './dto/keyCloakTokenRequestDTO.model';
 
-@ApiTags('Auth')
+@ApiTags('auth')
 @Controller()
 export class AuthController {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
   @ApiBody({
     schema: {
       type: 'object',
@@ -51,8 +52,9 @@ export class AuthController {
   })
   @Post('refreshToken')
   @Unprotected()
+  @ApiBearerAuth('Authorization')
   @HttpCode(HttpStatus.OK)
-  refreshAccessToken(@Body() token: KeyCloakTokenResponseDTO) {
+  refreshAccessToken(@Body() token: KeyCloakTokenRequestDTO) {
     return this.authService.refreshAcessToken(token.refresh_token);
   }
 }
